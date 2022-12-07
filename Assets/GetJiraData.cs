@@ -9,6 +9,7 @@ using TMPro;
 public class GetJiraData : MonoBehaviour{
 
     public TMP_Text textbox;
+    public TMP_InputField inputField;
 
 
     //https://oasisintern.atlassian.net/rest/api/latest/project/
@@ -17,13 +18,28 @@ public class GetJiraData : MonoBehaviour{
     string getAccountInfo = "api/latest/myself";
     string target_URL;
     string email = "manuel.paurevic@oasisdigital.com";
-    string token = "DoGYckulN4VE3W7PLm5D329F";
+    //string token = "DoGYckulN4VE3W7PLm5D329F";
     string authCache;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
+
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void getJira(){
+
+        string token = inputField.text;
+
         authCache = System.Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes(email + ":" + token));
         target_URL = baseURL + getAccountInfo;
 
@@ -38,13 +54,10 @@ public class GetJiraData : MonoBehaviour{
         string response = reader.ReadToEnd();
 
         Debug.Log(response);
-
         textbox.text = response;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
 }
