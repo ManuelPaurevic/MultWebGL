@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         playerY = this.transform;
     }
 
-    Plane plane = new Plane(Vector3.down, 0);
+   
    
     private void Update() {
         playerInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region Movement
 
-    [SerializeField] private float acceleration = 50;
+    [SerializeField] private float acceleration =20;
 
     private void HandleMovement() {
         rb.velocity += new Vector3(playerInput.x * acceleration * Time.deltaTime, 0 ,playerInput.z * acceleration * Time.deltaTime).normalized;
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     Ray ray;
     Vector3 lookPosition;
+    Plane plane = new Plane(Vector3.down, 1.1f);
     private void Rotation(){
         ray = Camera.main.ScreenPointToRay(mousePosition);
         if(plane.Raycast(ray, out float distance)){
